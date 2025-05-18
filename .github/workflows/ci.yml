@@ -27,6 +27,7 @@ jobs:
         exercise:
           #- 01.ASCII85_Task
           - 02.Gauss_Task
+          - 03.Shannon_Task
 
     runs-on: "${{ matrix.os }}"
 
