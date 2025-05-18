@@ -66,7 +66,7 @@ void shannon(std::vector<std::pair<char, double>>& symbols, std::map<char, std::
     shannon(symbols, table, split, end, total_prob - half);
 }
 
-std::string shannon_encode(const std::string& data, std::map<char, std::string>& table)
+std::string shannon_encoder(const std::string& data, std::map<char, std::string>& table)
 {
     std::map<char, double> freq = calc_freq(data);  
     table.clear();  
