@@ -66,7 +66,8 @@ void shannon(std::vector<std::pair<char, double>>& symbols, std::map<char, std::
     shannon(symbols, table, split, end, total_prob - half);
 }
 
-std::string shannon_encode(const std::string& data, std::map<char, std::string>& table) {
+std::string shannon_encode(const std::string& data, std::map<char, std::string>& table)
+{
     std::map<char, double> freq = calc_freq(data);  
     table.clear();  
     create_table(freq, table, data.size());  
@@ -79,3 +80,27 @@ std::string shannon_encode(const std::string& data, std::map<char, std::string>&
     return encoded;
 }
 
+std::string shannon_decoder(const std::string& data, std::map<char, std::string>& table)
+{
+    std::map<std::string, char> reversed_table;
+    for (const auto& [symbol, code] : table)
+    {
+        reversed_table[code] = symbol;
+    }
+    std::string decoded_data;
+    std::string code;
+    for (char c : data)
+    {
+        code += c;
+        if (reversed_table.find(code) != reversed_table.end()) 
+        {
+            decoded_data += reversed_table[code];
+            code.clear();
+        }
+    }
+    if (!code.empty())
+    {
+        throw std::runtime_error("Invalid Shannon-Fano encoded data: leftover bits");
+    }
+    return decoded_data;
+}
