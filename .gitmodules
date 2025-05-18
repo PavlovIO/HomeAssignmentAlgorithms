@@ -1,0 +1,3 @@
+[submodule "eigen"]
+	path = 02.Gauss_Task/eigen
+	url = https://gitlab.com/libeigen/eigen.git
